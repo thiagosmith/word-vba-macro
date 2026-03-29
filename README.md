@@ -9,7 +9,7 @@ Sub AutoOpen()
     MyMacro
 End Sub
 Sub MyMacro()
-    MsgBox ("This is a macro test")
+    MsgBox ("RedScan Academy")
 End Sub
 ```
 
