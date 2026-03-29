@@ -3,12 +3,12 @@
 ## Exibir alerta na tela
 ```
 Sub Document_Open()
-    MyMacro
+    RedScan
 End Sub
 Sub AutoOpen()
-    MyMacro
+    RedScan
 End Sub
-Sub MyMacro()
+Sub RedScan()
     MsgBox ("RedScan Academy")
 End Sub
 ```
