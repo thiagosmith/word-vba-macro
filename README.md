@@ -1,6 +1,11 @@
 # Word VBA Macro
 
 ## Comandos Básicos
+### Habilitar a execução de Scripts no PowerShell
+```
+Set-ExecutionPolicy Unrestricted
+```
+
 ### Desabilitar Windows Defender Real Time
 ```
 Set-MpPreference -DisableRealtimeMonitoring $true
