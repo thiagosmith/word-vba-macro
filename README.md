@@ -48,39 +48,39 @@ Interagindo com serviços Web utilizando o PowerShell
 ```
 Invoke-WebRequest scanme.org
 ```
-
+Salvando o resultado
 ```
 Invoke-WebRequest scanme.org -OutFile scanme.txt
 ```
-
+Analisando o Head
 ```
 Invoke-WebRequest scanme.org -Method Head
 ```
-
+Identificando os métodos aceitos
 ```
 Invoke-WebRequest scanme.org -Method Options
 ```
-
+Status Code da página
 ```
 (Invoke-WebRequest scanme.org).statuscode
 ```
-
+Obtendo Links da página
 ```
 (Invoke-WebRequest scanme.org).links
 ```
-
+Filtrando pelos links apenas
 ```
 (Invoke-WebRequest scanme.org).links.href
 ```
-
+Removendo o que não for link
 ```
 (Invoke-WebRequest scanme.org).links.href | Select-String http
 ```
-
+Inspeção dos headers
 ```
 (Invoke-WebRequest scanme.org).headers
 ```
-
+Coletando informação da tecnologia do servidor
 ```
 (Invoke-WebRequest scanme.org).headers.Server
 ```
