@@ -74,7 +74,7 @@ Invoke-WebRequest scanme.org -Method Options
 ```
 
 ```
-(Invoke-WebRequest scanme.org).links | Select-String http
+(Invoke-WebRequest scanme.org).links.href | Select-String http
 ```
 
 ```
