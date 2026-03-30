@@ -1,6 +1,11 @@
 # Word VBA Macro
 
 ## Comandos Básicos
+### Habilitar a execução de Scripts no PowerShell
+```
+Set-ExecutionPolicy Unrestricted
+```
+
 ### Laços de repetição no PowerShell
 ```
 foreach ($ip in 1..10) {echo "192.168.2.$ip"}
@@ -27,11 +32,57 @@ Removendo os ":" do final da resposta para deixar somente o endereço de IP
 ```
 $res.Line.Split('')[2] -replace ":",""
 ```
-
-
-### Habilitar a execução de Scripts no PowerShell
+Identificando porta 80 aberta com PowerShell
 ```
-Set-ExecutionPolicy Unrestricted
+Test-NetConnection 192.168.2.1 -Port 80
+```
+Identificando porta 80 aberta com PowerShell com saída simplificada
+```
+Test-NetConnection 192.168.2.1 -Port 80 -WarningAction SilentlyContinue -InformationLevel Quiet
+```
+Verificando de a porta está aberta ou fechada
+```
+if (Test-NetConnection 192.168.2.1 -Port 80 -WarningAction SilentlyContinue -InformationLevel Quiet) {echo "Port Opened"} else {echo "Port Closed"}
+```
+Interagindo com serviços Web utilizando o PowerShell
+```
+Invoke-WebRequest scanme.org
+```
+
+```
+Invoke-WebRequest scanme.org -OutFile scanme.txt
+```
+
+```
+Invoke-WebRequest scanme.org -Method Head
+```
+
+```
+Invoke-WebRequest scanme.org -Method Options
+```
+
+```
+(Invoke-WebRequest scanme.org).statuscode
+```
+
+```
+(Invoke-WebRequest scanme.org).links
+```
+
+```
+(Invoke-WebRequest scanme.org).links.href
+```
+
+```
+(Invoke-WebRequest scanme.org).links | Select-String http
+```
+
+```
+(Invoke-WebRequest scanme.org).headers
+```
+
+```
+(Invoke-WebRequest scanme.org).headers.Server
 ```
 
 ### Desabilitar Windows Defender Real Time
