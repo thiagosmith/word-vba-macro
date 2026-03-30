@@ -1,6 +1,11 @@
 # Word VBA Macro
 
 ## Comandos Básicos
+### Laços de repetição no PowerShell
+```
+foreach ($ip in 1..10) {echo "192.168.2.$ip"}
+```
+
 ### Habilitar a execução de Scripts no PowerShell
 ```
 Set-ExecutionPolicy Unrestricted
