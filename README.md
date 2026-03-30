@@ -6,6 +6,29 @@
 foreach ($ip in 1..10) {echo "192.168.2.$ip"}
 ```
 
+### Filtrando o resultado do ping
+Realizando o ping uma única vez
+```
+ping 192.168.2.1 -n 1
+```
+Filtrando pelo resultado de retorno
+```
+ping 192.168.2.1 -n 1 | Select-String "bytes=32"
+```
+Criando uma variável para armazenar o resultado do comando
+```
+$res = ping 192.168.2.1 -n 1 | Select-String "bytes=32"
+```
+Cortando o resultado com o endereço de IP somente
+```
+$res.Line.Split('')[2]
+```
+Removendo os ":" do final da resposta para deixar somente o endereço de IP
+```
+$res.Line.Split('')[2] -replace ":",""
+```
+
+
 ### Habilitar a execução de Scripts no PowerShell
 ```
 Set-ExecutionPolicy Unrestricted
